@@ -10,7 +10,7 @@ public class Simone extends GroupMember {
 
     @Override
     public void test() {
-
+        System.out.println("This is simone's class");
     }
 
     void flip(int num, int val) {
