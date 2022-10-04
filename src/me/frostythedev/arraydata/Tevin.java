@@ -54,54 +54,6 @@ public class Tevin extends GroupMember {
         return (oddSum / evenSum);
     }
 
-
-    void randDecrementRow(int rowIndex){
-        if(rowIndex > getRows() || rowIndex < 0) {
-            // error
-            System.out.printf("rowIndex exceeds available range [0-%d]. Please supply another number.\n", getRows());
-            return;
-        }
-
-        Random rnd = ThreadLocalRandom.current();
-        int ranIndex = rnd.nextInt(getColumns());
-
-        //System.out.println("randIndex: " + ranIndex + " | old: " + (getValues()[rowIndex][ranIndex]) +  " | new: " + (getValues()[rowIndex][ranIndex]-1));
-
-        getValues()[rowIndex][ranIndex] = (getValues()[rowIndex][ranIndex]-1);
-    }
-
-    void randDecrementCol(int colIndex){
-        if(colIndex > getRows() || colIndex < 0) {
-            // error
-            System.out.printf("colIndex exceeds available range [0-%d]. Please supply another number.\n", getColumns());
-            return;
-        }
-
-        Random rnd = ThreadLocalRandom.current();
-        int ranIndex = rnd.nextInt(getRows());
-
-        //System.out.println("randIndex: " + ranIndex + " | old: " + (getValues()[rowIndex][ranIndex]) +  " | new: " + (getValues()[rowIndex][ranIndex]-1));
-
-        getValues()[ranIndex][colIndex] = (getValues()[ranIndex][colIndex]-1);
-    }
-
-    int rowProduct(int rowIndex){
-        int rowProd = 1;
-        for(int i = 0; i < getColumns(); i++) {
-            //System.out.println("[" + i + "] " + " Multiplying " + rowProd + " by " + getValues()[rowIndex][i]);
-            rowProd*= getValues()[rowIndex][i];
-        }
-        return rowProd;
-    }
-
-    int colProduct(int colIndex){
-        int colProd = 1;
-        for(int i = 0; i < getRows(); i++) {
-            //System.out.println("[" + i + "] " + " Multiplying " + rowProd + " by " + getValues()[rowIndex][i]);
-            colProd*= getValues()[i][colIndex];
-        }
-        return colProd;
-    }
     void product (int min, int max){
 
         // Product of the columns two
@@ -176,5 +128,54 @@ public class Tevin extends GroupMember {
                 getValues()[y][x] = rnd.nextInt(1, 11);
             }
         }
+    }
+
+    // UTILITY FUNCTIONS
+    void randDecrementRow(int rowIndex){
+        if(rowIndex > getRows() || rowIndex < 0) {
+            // error
+            System.out.printf("rowIndex exceeds available range [0-%d]. Please supply another number.\n", getRows());
+            return;
+        }
+
+        Random rnd = ThreadLocalRandom.current();
+        int ranIndex = rnd.nextInt(getColumns());
+
+        //System.out.println("randIndex: " + ranIndex + " | old: " + (getValues()[rowIndex][ranIndex]) +  " | new: " + (getValues()[rowIndex][ranIndex]-1));
+
+        getValues()[rowIndex][ranIndex] = (getValues()[rowIndex][ranIndex]-1);
+    }
+
+    void randDecrementCol(int colIndex){
+        if(colIndex > getRows() || colIndex < 0) {
+            // error
+            System.out.printf("colIndex exceeds available range [0-%d]. Please supply another number.\n", getColumns());
+            return;
+        }
+
+        Random rnd = ThreadLocalRandom.current();
+        int ranIndex = rnd.nextInt(getRows());
+
+        //System.out.println("randIndex: " + ranIndex + " | old: " + (getValues()[rowIndex][ranIndex]) +  " | new: " + (getValues()[rowIndex][ranIndex]-1));
+
+        getValues()[ranIndex][colIndex] = (getValues()[ranIndex][colIndex]-1);
+    }
+
+    int rowProduct(int rowIndex){
+        int rowProd = 1;
+        for(int i = 0; i < getColumns(); i++) {
+            //System.out.println("[" + i + "] " + " Multiplying " + rowProd + " by " + getValues()[rowIndex][i]);
+            rowProd*= getValues()[rowIndex][i];
+        }
+        return rowProd;
+    }
+
+    int colProduct(int colIndex) {
+        int colProd = 1;
+        for (int i = 0; i < getRows(); i++) {
+            //System.out.println("[" + i + "] " + " Multiplying " + rowProd + " by " + getValues()[rowIndex][i]);
+            colProd *= getValues()[i][colIndex];
+        }
+        return colProd;
     }
 }
