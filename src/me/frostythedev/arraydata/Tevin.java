@@ -12,11 +12,11 @@ public class Tevin extends GroupMember {
 
     @Override
     public void test() {
-        /*generate();
-        print();
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println("Checkered Odd: " + checkeredOdd());*/
+       /* generate();
+        product(10,100);
+        print(2,2);
+        System.out.println("\n");*/
+        //System.out.println("Checkered Odd: " + checkeredOdd());
     }
 
     // TEVIN'S CORNER
@@ -54,25 +54,117 @@ public class Tevin extends GroupMember {
         return (oddSum / evenSum);
     }
 
+
+    void randDecrementRow(int rowIndex){
+        if(rowIndex > getRows() || rowIndex < 0) {
+            // error
+            System.out.printf("rowIndex exceeds available range [0-%d]. Please supply another number.\n", getRows());
+            return;
+        }
+
+        Random rnd = ThreadLocalRandom.current();
+        int ranIndex = rnd.nextInt(getColumns());
+
+        //System.out.println("randIndex: " + ranIndex + " | old: " + (getValues()[rowIndex][ranIndex]) +  " | new: " + (getValues()[rowIndex][ranIndex]-1));
+
+        getValues()[rowIndex][ranIndex] = (getValues()[rowIndex][ranIndex]-1);
+    }
+
+    void randDecrementCol(int colIndex){
+        if(colIndex > getRows() || colIndex < 0) {
+            // error
+            System.out.printf("colIndex exceeds available range [0-%d]. Please supply another number.\n", getColumns());
+            return;
+        }
+
+        Random rnd = ThreadLocalRandom.current();
+        int ranIndex = rnd.nextInt(getRows());
+
+        //System.out.println("randIndex: " + ranIndex + " | old: " + (getValues()[rowIndex][ranIndex]) +  " | new: " + (getValues()[rowIndex][ranIndex]-1));
+
+        getValues()[ranIndex][colIndex] = (getValues()[ranIndex][colIndex]-1);
+    }
+
+    int rowProduct(int rowIndex){
+        int rowProd = 1;
+        for(int i = 0; i < getColumns(); i++) {
+            //System.out.println("[" + i + "] " + " Multiplying " + rowProd + " by " + getValues()[rowIndex][i]);
+            rowProd*= getValues()[rowIndex][i];
+        }
+        return rowProd;
+    }
+
+    int colProduct(int colIndex){
+        int colProd = 1;
+        for(int i = 0; i < getRows(); i++) {
+            //System.out.println("[" + i + "] " + " Multiplying " + rowProd + " by " + getValues()[rowIndex][i]);
+            colProd*= getValues()[i][colIndex];
+        }
+        return colProd;
+    }
     void product (int min, int max){
 
+        // Product of the columns two
+
+        for(int y = 0; y < getRows(); y++) {
+            int rowProd = rowProduct(y);
+
+            while (rowProd > (min-1) && rowProd < (max+1)) {
+                //System.out.println("rowProd is within range");
+                randDecrementRow(y);
+                rowProd = rowProduct(y);
+            }
+
+            getRowData()[y] = rowProd;
+        }
+
+        // Product of the rows
+
+        for(int x = 0; x < getColumns(); x++) {
+            int colProd = colProduct(x);
+
+            while (colProd > (min-1) && colProd < (max+1)) {
+                //System.out.println("rowProd is within range");
+                randDecrementCol(x);
+                colProd = colProduct(x);
+            }
+
+            getColData()[x] = colProd;
+        }
     }
 
     void print() {
-        for (int y = 0; y < getRows(); y++){
-            for(int x = 0; x < getColumns(); x++) {
-
-                if(x != (getColumns()-1) ) {
-                    System.out.print(getValues()[y][x] + " | ");
-                }else{
-                    System.out.print(getValues()[y][x] + "\n");
-                }
-            }
-        }
+        print(getRows(), getColumns());
     }
 
     void print(int rows, int columns){
 
+        if(rows > getRows() || columns > getColumns()){
+            // error
+            System.out.println("You have entered a row or column that is greater than the maximum limit allowed.");
+            return;
+        }
+
+        for (int y = 0; y < rows; y++){
+            for(int x = 0; x < columns; x++) {
+
+                if(x != (columns-1) ) {
+                    System.out.print(getValues()[y][x] + "|");
+                }else{
+                    System.out.print(getValues()[y][x] + "||" + getRowData()[y] + "\n");
+                }
+            }
+        }
+
+        System.out.print("\n");
+
+        for(int i = 0; i < columns; i++){
+            if(i != (columns-1)) {
+                System.out.print(getColData()[i] + "|");
+            }else{
+                System.out.print(getColData()[i] + "");
+            }
+        }
     }
 
     @Deprecated
