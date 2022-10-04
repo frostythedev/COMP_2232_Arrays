@@ -1,6 +1,7 @@
 package me.frostythedev.arraydata;
 
 import me.frostythedev.arraydata.core.GroupMember;
+import java.util.Random;
 
 public class Jalisa extends GroupMember {
 
@@ -9,11 +10,13 @@ public class Jalisa extends GroupMember {
     }
 
     @Override
-    public void test() {
+    public void test()
+    {
        ArrayData();
     }
 
-    void ArrayData() {
+    void ArrayData()
+    {
         setRows(10);
         setColumns(10);
 
@@ -22,7 +25,8 @@ public class Jalisa extends GroupMember {
         setColData(new int [0]);
     }
 
-    void ArrayData(int nRows, int nColumns) {
+    void ArrayData(int nRows, int nColumns)
+    {
          this.setRows(nRows);
          this.setColumns(nColumns);
 
@@ -31,7 +35,8 @@ public class Jalisa extends GroupMember {
         setColData(new int [0]);
     }
 
-    void ArrayData(int nRows, int nColumns, int startingValue) {
+    void ArrayData(int nRows, int nColumns, int startingValue)
+    {
         this.setRows(nRows);
         this.setColumns(nColumns);
 
@@ -47,7 +52,40 @@ public class Jalisa extends GroupMember {
         setColData(new int [0]);
     }
 
-    void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol) {
+    void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol)
+    {
+        Random rand = new Random();
+
+        setValues(new int [total][total]);
+
+         //Obtain a number between [0 - maxRow].
+            total = rand.nextInt(maxRow);
+
+            // Add minRow to the result to get a number from the required range
+            // (i.e., [1 - 10]).
+            total += minRow;
+
+
+//        for( int r = 0; r < maxRow; r++)
+//        {
+//            // Obtain a number between [0 - maxRow].
+//            int randomNum = rand.nextInt(maxRow);
+//
+//            // Add minRow to the result to get a number from the required range
+//            // (i.e., [1 - 10]).
+//            randomNum += minRow;
+//
+//            for (int c =0; c < maxCol; c++)
+//            {
+//                // Obtain a number between [0 - maxCol].
+//                int randNum = rand.nextInt(maxCol);
+//
+//                // Add minRow to the result to get a number from     the required range
+//                // (i.e., [1 - 10]).
+//                randNum += minCol;
+//
+//            }
+//        }
 
     }
 
