@@ -80,8 +80,8 @@ public class Jalisa extends GroupMember {
 
         for (int i = 0; i < num; i++)
         {
-            int rowPosition = rand.nextInt();
-            int columnPosition = rand.nextInt();
+            int rowPosition = rand.nextInt(getRows());
+            int columnPosition = rand.nextInt(getColumns());
 
             getValues()[rowPosition][columnPosition] = val;
         }
