@@ -56,40 +56,34 @@ public class Jalisa extends GroupMember {
     {
         Random rand = new Random();
 
-        setValues(new int [total][total]);
+        for( int r = 0; r < maxRow; r++)
+        {
+            //Generating a random row position between the minRow and maxRow
+            int rowPosition = rand.nextInt(maxRow - minRow + 1) + minRow;
 
-         //Obtain a number between [0 - maxRow].
-            total = rand.nextInt(maxRow);
+            for (int c =0; c < maxCol; c++)
+            {
+                //Generating a random column position between the minCol and maxCol
+                int columnPosition = rand.nextInt(maxCol - minCol + 1) + minCol;
 
-            // Add minRow to the result to get a number from the required range
-            // (i.e., [1 - 10]).
-            total += minRow;
-
-
-//        for( int r = 0; r < maxRow; r++)
-//        {
-//            // Obtain a number between [0 - maxRow].
-//            int randomNum = rand.nextInt(maxRow);
-//
-//            // Add minRow to the result to get a number from the required range
-//            // (i.e., [1 - 10]).
-//            randomNum += minRow;
-//
-//            for (int c =0; c < maxCol; c++)
-//            {
-//                // Obtain a number between [0 - maxCol].
-//                int randNum = rand.nextInt(maxCol);
-//
-//                // Add minRow to the result to get a number from     the required range
-//                // (i.e., [1 - 10]).
-//                randNum += minCol;
-//
-//            }
-//        }
-
+                for (int i = 0; i < total; i++)
+                {
+                   getValues()[r][c] = newValue;
+                }
+            }
+        }
     }
 
-    void flip(int num, int val) {
+    void flip(int num, int val)
+    {
+        Random rand = new Random();
 
+        for (int i = 0; i < num; i++)
+        {
+            int rowPosition = rand.nextInt();
+            int columnPosition = rand.nextInt();
+
+            getValues()[rowPosition][columnPosition] = val;
+        }
     }
 }
