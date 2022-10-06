@@ -1,6 +1,7 @@
 package me.frostythedev.arraydata;
 
 import me.frostythedev.arraydata.core.GroupMember;
+import java.util.Random;
 
 public class Jalisa extends GroupMember {
 
@@ -9,11 +10,13 @@ public class Jalisa extends GroupMember {
     }
 
     @Override
-    public void test() {
+    public void test()
+    {
        ArrayData();
     }
 
-    void ArrayData() {
+    void ArrayData()
+    {
         setRows(10);
         setColumns(10);
 
@@ -22,7 +25,8 @@ public class Jalisa extends GroupMember {
         setColData(new int [0]);
     }
 
-    void ArrayData(int nRows, int nColumns) {
+    void ArrayData(int nRows, int nColumns)
+    {
          this.setRows(nRows);
          this.setColumns(nColumns);
 
@@ -31,7 +35,8 @@ public class Jalisa extends GroupMember {
         setColData(new int [0]);
     }
 
-    void ArrayData(int nRows, int nColumns, int startingValue) {
+    void ArrayData(int nRows, int nColumns, int startingValue)
+    {
         this.setRows(nRows);
         this.setColumns(nColumns);
 
@@ -47,11 +52,38 @@ public class Jalisa extends GroupMember {
         setColData(new int [0]);
     }
 
-    void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol) {
+    void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol)
+    {
+        Random rand = new Random();
 
+        for( int r = 0; r < maxRow; r++)
+        {
+            //Generating a random row position between the minRow and maxRow
+            int rowPosition = rand.nextInt(maxRow - minRow + 1) + minRow;
+
+            for (int c =0; c < maxCol; c++)
+            {
+                //Generating a random column position between the minCol and maxCol
+                int columnPosition = rand.nextInt(maxCol - minCol + 1) + minCol;
+
+                for (int i = 0; i < total; i++)
+                {
+                   getValues()[r][c] = newValue;
+                }
+            }
+        }
     }
 
-    void flip(int num, int val) {
+    void flip(int num, int val)
+    {
+        Random rand = new Random();
 
+        for (int i = 0; i < num; i++)
+        {
+            int rowPosition = rand.nextInt(getRows());
+            int columnPosition = rand.nextInt(getColumns());
+
+            getValues()[rowPosition][columnPosition] = val;
+        }
     }
 }
