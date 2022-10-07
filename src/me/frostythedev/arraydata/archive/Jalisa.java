@@ -1,4 +1,4 @@
-package me.frostythedev.arraydata;
+package me.frostythedev.arraydata.archive;
 
 import me.frostythedev.arraydata.core.GroupMember;
 import java.util.Random;

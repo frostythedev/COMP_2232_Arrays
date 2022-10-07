@@ -1,4 +1,4 @@
-package me.frostythedev.arraydata;
+package me.frostythedev.arraydata.archive;
 
 public class OldArrayData {
 
